@@ -16,7 +16,7 @@
 // VERSION		"Version 13.0.1 Build 232 06/12/2013 Service Pack 1 SJ Full Version"
 // CREATED		"Wed Apr 03 10:52:46 2019"
 
-module SAFEV(
+module pipeline(
 	CLOCK_50,
 	regwrite_data
 );

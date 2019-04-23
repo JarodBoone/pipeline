@@ -33,14 +33,14 @@
 //applicable agreement for further details.
 
 
-//altsyncram CLOCK_ENABLE_INPUT_A="BYPASS" CLOCK_ENABLE_OUTPUT_A="BYPASS" DEVICE_FAMILY="Cyclone II" ENABLE_RUNTIME_MOD="YES" INSTANCE_NAME="1" NUMWORDS_A=256 OPERATION_MODE="SINGLE_PORT" OUTDATA_ACLR_A="NONE" OUTDATA_REG_A="UNREGISTERED" POWER_UP_UNINITIALIZED="FALSE" WIDTH_A=32 WIDTH_BYTEENA_A=1 WIDTHAD_A=8 address_a clock0 data_a q_a wren_a
+//altsyncram CLOCK_ENABLE_INPUT_A="BYPASS" CLOCK_ENABLE_OUTPUT_A="BYPASS" DEVICE_FAMILY="Cyclone II" ENABLE_RUNTIME_MOD="YES" INSTANCE_NAME="1" NUMWORDS_A=256 OPERATION_MODE="SINGLE_PORT" OUTDATA_ACLR_A="NONE" OUTDATA_REG_A="UNREGISTERED" POWER_UP_UNINITIALIZED="FALSE" RAM_BLOCK_TYPE="M4K" WIDTH_A=32 WIDTH_BYTEENA_A=1 WIDTHAD_A=8 address_a clock0 data_a q_a wren_a
 //VERSION_BEGIN 13.0 cbx_altsyncram 2013:06:12:18:03:43:SJ cbx_cycloneii 2013:06:12:18:03:43:SJ cbx_lpm_add_sub 2013:06:12:18:03:43:SJ cbx_lpm_compare 2013:06:12:18:03:43:SJ cbx_lpm_decode 2013:06:12:18:03:43:SJ cbx_lpm_mux 2013:06:12:18:03:43:SJ cbx_mgl 2013:06:12:18:05:10:SJ cbx_stratix 2013:06:12:18:03:43:SJ cbx_stratixii 2013:06:12:18:03:43:SJ cbx_stratixiii 2013:06:12:18:03:43:SJ cbx_stratixv 2013:06:12:18:03:43:SJ cbx_util_mgl 2013:06:12:18:03:43:SJ  VERSION_END
 // synthesis VERILOG_INPUT_VERSION VERILOG_2001
 // altera message_off 10463
 
 
 
-//altsyncram ADDRESS_ACLR_B="NONE" ADDRESS_REG_B="CLOCK1" CLOCK_ENABLE_INPUT_A="BYPASS" CLOCK_ENABLE_OUTPUT_A="BYPASS" DEVICE_FAMILY="Cyclone II" ENABLE_RUNTIME_MOD="NO" INDATA_ACLR_B="NONE" INDATA_REG_B="CLOCK1" NUMWORDS_A=256 NUMWORDS_B=256 OPERATION_MODE="BIDIR_DUAL_PORT" OUTDATA_ACLR_A="NONE" OUTDATA_ACLR_B="NONE" OUTDATA_REG_A="UNREGISTERED" OUTDATA_REG_B="UNREGISTERED" RDCONTROL_REG_B="CLOCK1" read_during_write_mode_port_a="NEW_DATA_NO_NBE_READ" WIDTH_A=32 WIDTH_B=32 WIDTH_BYTEENA_A=1 WIDTHAD_A=8 WIDTHAD_B=8 WRCONTROL_ACLR_B="NONE" WRCONTROL_WRADDRESS_REG_B="CLOCK1" address_a address_b clock0 clock1 data_a data_b q_a q_b wren_a wren_b
+//altsyncram ADDRESS_ACLR_B="NONE" ADDRESS_REG_B="CLOCK1" CLOCK_ENABLE_INPUT_A="BYPASS" CLOCK_ENABLE_OUTPUT_A="BYPASS" DEVICE_FAMILY="Cyclone II" ENABLE_RUNTIME_MOD="NO" INDATA_ACLR_B="NONE" INDATA_REG_B="CLOCK1" NUMWORDS_A=256 NUMWORDS_B=256 OPERATION_MODE="BIDIR_DUAL_PORT" OUTDATA_ACLR_A="NONE" OUTDATA_ACLR_B="NONE" OUTDATA_REG_A="UNREGISTERED" OUTDATA_REG_B="UNREGISTERED" RAM_BLOCK_TYPE="M4K" RDCONTROL_REG_B="CLOCK1" read_during_write_mode_port_a="NEW_DATA_NO_NBE_READ" WIDTH_A=32 WIDTH_B=32 WIDTH_BYTEENA_A=1 WIDTHAD_A=8 WIDTHAD_B=8 WRCONTROL_ACLR_B="NONE" WRCONTROL_WRADDRESS_REG_B="CLOCK1" address_a address_b clock0 clock1 data_a data_b q_a q_b wren_a wren_b
 //VERSION_BEGIN 13.0 cbx_altsyncram 2013:06:12:18:03:43:SJ cbx_cycloneii 2013:06:12:18:03:43:SJ cbx_lpm_add_sub 2013:06:12:18:03:43:SJ cbx_lpm_compare 2013:06:12:18:03:43:SJ cbx_lpm_decode 2013:06:12:18:03:43:SJ cbx_lpm_mux 2013:06:12:18:03:43:SJ cbx_mgl 2013:06:12:18:05:10:SJ cbx_stratix 2013:06:12:18:03:43:SJ cbx_stratixii 2013:06:12:18:03:43:SJ cbx_stratixiii 2013:06:12:18:03:43:SJ cbx_stratixv 2013:06:12:18:03:43:SJ cbx_util_mgl 2013:06:12:18:03:43:SJ  VERSION_END
 
 //synthesis_resources = M4K 2 
@@ -210,7 +210,7 @@ module  datamem_altsyncram1
 		ram_block3a_0.port_b_logical_ram_depth = 256,
 		ram_block3a_0.port_b_logical_ram_width = 32,
 		ram_block3a_0.port_b_read_enable_write_enable_clock = "clock1",
-		ram_block3a_0.ram_block_type = "AUTO",
+		ram_block3a_0.ram_block_type = "M4K",
 		ram_block3a_0.lpm_type = "cycloneii_ram_block";
 	cycloneii_ram_block   ram_block3a_1
 	( 
@@ -271,7 +271,7 @@ module  datamem_altsyncram1
 		ram_block3a_1.port_b_logical_ram_depth = 256,
 		ram_block3a_1.port_b_logical_ram_width = 32,
 		ram_block3a_1.port_b_read_enable_write_enable_clock = "clock1",
-		ram_block3a_1.ram_block_type = "AUTO",
+		ram_block3a_1.ram_block_type = "M4K",
 		ram_block3a_1.lpm_type = "cycloneii_ram_block";
 	cycloneii_ram_block   ram_block3a_2
 	( 
@@ -332,7 +332,7 @@ module  datamem_altsyncram1
 		ram_block3a_2.port_b_logical_ram_depth = 256,
 		ram_block3a_2.port_b_logical_ram_width = 32,
 		ram_block3a_2.port_b_read_enable_write_enable_clock = "clock1",
-		ram_block3a_2.ram_block_type = "AUTO",
+		ram_block3a_2.ram_block_type = "M4K",
 		ram_block3a_2.lpm_type = "cycloneii_ram_block";
 	cycloneii_ram_block   ram_block3a_3
 	( 
@@ -393,7 +393,7 @@ module  datamem_altsyncram1
 		ram_block3a_3.port_b_logical_ram_depth = 256,
 		ram_block3a_3.port_b_logical_ram_width = 32,
 		ram_block3a_3.port_b_read_enable_write_enable_clock = "clock1",
-		ram_block3a_3.ram_block_type = "AUTO",
+		ram_block3a_3.ram_block_type = "M4K",
 		ram_block3a_3.lpm_type = "cycloneii_ram_block";
 	cycloneii_ram_block   ram_block3a_4
 	( 
@@ -454,7 +454,7 @@ module  datamem_altsyncram1
 		ram_block3a_4.port_b_logical_ram_depth = 256,
 		ram_block3a_4.port_b_logical_ram_width = 32,
 		ram_block3a_4.port_b_read_enable_write_enable_clock = "clock1",
-		ram_block3a_4.ram_block_type = "AUTO",
+		ram_block3a_4.ram_block_type = "M4K",
 		ram_block3a_4.lpm_type = "cycloneii_ram_block";
 	cycloneii_ram_block   ram_block3a_5
 	( 
@@ -515,7 +515,7 @@ module  datamem_altsyncram1
 		ram_block3a_5.port_b_logical_ram_depth = 256,
 		ram_block3a_5.port_b_logical_ram_width = 32,
 		ram_block3a_5.port_b_read_enable_write_enable_clock = "clock1",
-		ram_block3a_5.ram_block_type = "AUTO",
+		ram_block3a_5.ram_block_type = "M4K",
 		ram_block3a_5.lpm_type = "cycloneii_ram_block";
 	cycloneii_ram_block   ram_block3a_6
 	( 
@@ -576,7 +576,7 @@ module  datamem_altsyncram1
 		ram_block3a_6.port_b_logical_ram_depth = 256,
 		ram_block3a_6.port_b_logical_ram_width = 32,
 		ram_block3a_6.port_b_read_enable_write_enable_clock = "clock1",
-		ram_block3a_6.ram_block_type = "AUTO",
+		ram_block3a_6.ram_block_type = "M4K",
 		ram_block3a_6.lpm_type = "cycloneii_ram_block";
 	cycloneii_ram_block   ram_block3a_7
 	( 
@@ -637,7 +637,7 @@ module  datamem_altsyncram1
 		ram_block3a_7.port_b_logical_ram_depth = 256,
 		ram_block3a_7.port_b_logical_ram_width = 32,
 		ram_block3a_7.port_b_read_enable_write_enable_clock = "clock1",
-		ram_block3a_7.ram_block_type = "AUTO",
+		ram_block3a_7.ram_block_type = "M4K",
 		ram_block3a_7.lpm_type = "cycloneii_ram_block";
 	cycloneii_ram_block   ram_block3a_8
 	( 
@@ -698,7 +698,7 @@ module  datamem_altsyncram1
 		ram_block3a_8.port_b_logical_ram_depth = 256,
 		ram_block3a_8.port_b_logical_ram_width = 32,
 		ram_block3a_8.port_b_read_enable_write_enable_clock = "clock1",
-		ram_block3a_8.ram_block_type = "AUTO",
+		ram_block3a_8.ram_block_type = "M4K",
 		ram_block3a_8.lpm_type = "cycloneii_ram_block";
 	cycloneii_ram_block   ram_block3a_9
 	( 
@@ -759,7 +759,7 @@ module  datamem_altsyncram1
 		ram_block3a_9.port_b_logical_ram_depth = 256,
 		ram_block3a_9.port_b_logical_ram_width = 32,
 		ram_block3a_9.port_b_read_enable_write_enable_clock = "clock1",
-		ram_block3a_9.ram_block_type = "AUTO",
+		ram_block3a_9.ram_block_type = "M4K",
 		ram_block3a_9.lpm_type = "cycloneii_ram_block";
 	cycloneii_ram_block   ram_block3a_10
 	( 
@@ -820,7 +820,7 @@ module  datamem_altsyncram1
 		ram_block3a_10.port_b_logical_ram_depth = 256,
 		ram_block3a_10.port_b_logical_ram_width = 32,
 		ram_block3a_10.port_b_read_enable_write_enable_clock = "clock1",
-		ram_block3a_10.ram_block_type = "AUTO",
+		ram_block3a_10.ram_block_type = "M4K",
 		ram_block3a_10.lpm_type = "cycloneii_ram_block";
 	cycloneii_ram_block   ram_block3a_11
 	( 
@@ -881,7 +881,7 @@ module  datamem_altsyncram1
 		ram_block3a_11.port_b_logical_ram_depth = 256,
 		ram_block3a_11.port_b_logical_ram_width = 32,
 		ram_block3a_11.port_b_read_enable_write_enable_clock = "clock1",
-		ram_block3a_11.ram_block_type = "AUTO",
+		ram_block3a_11.ram_block_type = "M4K",
 		ram_block3a_11.lpm_type = "cycloneii_ram_block";
 	cycloneii_ram_block   ram_block3a_12
 	( 
@@ -942,7 +942,7 @@ module  datamem_altsyncram1
 		ram_block3a_12.port_b_logical_ram_depth = 256,
 		ram_block3a_12.port_b_logical_ram_width = 32,
 		ram_block3a_12.port_b_read_enable_write_enable_clock = "clock1",
-		ram_block3a_12.ram_block_type = "AUTO",
+		ram_block3a_12.ram_block_type = "M4K",
 		ram_block3a_12.lpm_type = "cycloneii_ram_block";
 	cycloneii_ram_block   ram_block3a_13
 	( 
@@ -1003,7 +1003,7 @@ module  datamem_altsyncram1
 		ram_block3a_13.port_b_logical_ram_depth = 256,
 		ram_block3a_13.port_b_logical_ram_width = 32,
 		ram_block3a_13.port_b_read_enable_write_enable_clock = "clock1",
-		ram_block3a_13.ram_block_type = "AUTO",
+		ram_block3a_13.ram_block_type = "M4K",
 		ram_block3a_13.lpm_type = "cycloneii_ram_block";
 	cycloneii_ram_block   ram_block3a_14
 	( 
@@ -1064,7 +1064,7 @@ module  datamem_altsyncram1
 		ram_block3a_14.port_b_logical_ram_depth = 256,
 		ram_block3a_14.port_b_logical_ram_width = 32,
 		ram_block3a_14.port_b_read_enable_write_enable_clock = "clock1",
-		ram_block3a_14.ram_block_type = "AUTO",
+		ram_block3a_14.ram_block_type = "M4K",
 		ram_block3a_14.lpm_type = "cycloneii_ram_block";
 	cycloneii_ram_block   ram_block3a_15
 	( 
@@ -1125,7 +1125,7 @@ module  datamem_altsyncram1
 		ram_block3a_15.port_b_logical_ram_depth = 256,
 		ram_block3a_15.port_b_logical_ram_width = 32,
 		ram_block3a_15.port_b_read_enable_write_enable_clock = "clock1",
-		ram_block3a_15.ram_block_type = "AUTO",
+		ram_block3a_15.ram_block_type = "M4K",
 		ram_block3a_15.lpm_type = "cycloneii_ram_block";
 	cycloneii_ram_block   ram_block3a_16
 	( 
@@ -1186,7 +1186,7 @@ module  datamem_altsyncram1
 		ram_block3a_16.port_b_logical_ram_depth = 256,
 		ram_block3a_16.port_b_logical_ram_width = 32,
 		ram_block3a_16.port_b_read_enable_write_enable_clock = "clock1",
-		ram_block3a_16.ram_block_type = "AUTO",
+		ram_block3a_16.ram_block_type = "M4K",
 		ram_block3a_16.lpm_type = "cycloneii_ram_block";
 	cycloneii_ram_block   ram_block3a_17
 	( 
@@ -1247,7 +1247,7 @@ module  datamem_altsyncram1
 		ram_block3a_17.port_b_logical_ram_depth = 256,
 		ram_block3a_17.port_b_logical_ram_width = 32,
 		ram_block3a_17.port_b_read_enable_write_enable_clock = "clock1",
-		ram_block3a_17.ram_block_type = "AUTO",
+		ram_block3a_17.ram_block_type = "M4K",
 		ram_block3a_17.lpm_type = "cycloneii_ram_block";
 	cycloneii_ram_block   ram_block3a_18
 	( 
@@ -1308,7 +1308,7 @@ module  datamem_altsyncram1
 		ram_block3a_18.port_b_logical_ram_depth = 256,
 		ram_block3a_18.port_b_logical_ram_width = 32,
 		ram_block3a_18.port_b_read_enable_write_enable_clock = "clock1",
-		ram_block3a_18.ram_block_type = "AUTO",
+		ram_block3a_18.ram_block_type = "M4K",
 		ram_block3a_18.lpm_type = "cycloneii_ram_block";
 	cycloneii_ram_block   ram_block3a_19
 	( 
@@ -1369,7 +1369,7 @@ module  datamem_altsyncram1
 		ram_block3a_19.port_b_logical_ram_depth = 256,
 		ram_block3a_19.port_b_logical_ram_width = 32,
 		ram_block3a_19.port_b_read_enable_write_enable_clock = "clock1",
-		ram_block3a_19.ram_block_type = "AUTO",
+		ram_block3a_19.ram_block_type = "M4K",
 		ram_block3a_19.lpm_type = "cycloneii_ram_block";
 	cycloneii_ram_block   ram_block3a_20
 	( 
@@ -1430,7 +1430,7 @@ module  datamem_altsyncram1
 		ram_block3a_20.port_b_logical_ram_depth = 256,
 		ram_block3a_20.port_b_logical_ram_width = 32,
 		ram_block3a_20.port_b_read_enable_write_enable_clock = "clock1",
-		ram_block3a_20.ram_block_type = "AUTO",
+		ram_block3a_20.ram_block_type = "M4K",
 		ram_block3a_20.lpm_type = "cycloneii_ram_block";
 	cycloneii_ram_block   ram_block3a_21
 	( 
@@ -1491,7 +1491,7 @@ module  datamem_altsyncram1
 		ram_block3a_21.port_b_logical_ram_depth = 256,
 		ram_block3a_21.port_b_logical_ram_width = 32,
 		ram_block3a_21.port_b_read_enable_write_enable_clock = "clock1",
-		ram_block3a_21.ram_block_type = "AUTO",
+		ram_block3a_21.ram_block_type = "M4K",
 		ram_block3a_21.lpm_type = "cycloneii_ram_block";
 	cycloneii_ram_block   ram_block3a_22
 	( 
@@ -1552,7 +1552,7 @@ module  datamem_altsyncram1
 		ram_block3a_22.port_b_logical_ram_depth = 256,
 		ram_block3a_22.port_b_logical_ram_width = 32,
 		ram_block3a_22.port_b_read_enable_write_enable_clock = "clock1",
-		ram_block3a_22.ram_block_type = "AUTO",
+		ram_block3a_22.ram_block_type = "M4K",
 		ram_block3a_22.lpm_type = "cycloneii_ram_block";
 	cycloneii_ram_block   ram_block3a_23
 	( 
@@ -1613,7 +1613,7 @@ module  datamem_altsyncram1
 		ram_block3a_23.port_b_logical_ram_depth = 256,
 		ram_block3a_23.port_b_logical_ram_width = 32,
 		ram_block3a_23.port_b_read_enable_write_enable_clock = "clock1",
-		ram_block3a_23.ram_block_type = "AUTO",
+		ram_block3a_23.ram_block_type = "M4K",
 		ram_block3a_23.lpm_type = "cycloneii_ram_block";
 	cycloneii_ram_block   ram_block3a_24
 	( 
@@ -1674,7 +1674,7 @@ module  datamem_altsyncram1
 		ram_block3a_24.port_b_logical_ram_depth = 256,
 		ram_block3a_24.port_b_logical_ram_width = 32,
 		ram_block3a_24.port_b_read_enable_write_enable_clock = "clock1",
-		ram_block3a_24.ram_block_type = "AUTO",
+		ram_block3a_24.ram_block_type = "M4K",
 		ram_block3a_24.lpm_type = "cycloneii_ram_block";
 	cycloneii_ram_block   ram_block3a_25
 	( 
@@ -1735,7 +1735,7 @@ module  datamem_altsyncram1
 		ram_block3a_25.port_b_logical_ram_depth = 256,
 		ram_block3a_25.port_b_logical_ram_width = 32,
 		ram_block3a_25.port_b_read_enable_write_enable_clock = "clock1",
-		ram_block3a_25.ram_block_type = "AUTO",
+		ram_block3a_25.ram_block_type = "M4K",
 		ram_block3a_25.lpm_type = "cycloneii_ram_block";
 	cycloneii_ram_block   ram_block3a_26
 	( 
@@ -1796,7 +1796,7 @@ module  datamem_altsyncram1
 		ram_block3a_26.port_b_logical_ram_depth = 256,
 		ram_block3a_26.port_b_logical_ram_width = 32,
 		ram_block3a_26.port_b_read_enable_write_enable_clock = "clock1",
-		ram_block3a_26.ram_block_type = "AUTO",
+		ram_block3a_26.ram_block_type = "M4K",
 		ram_block3a_26.lpm_type = "cycloneii_ram_block";
 	cycloneii_ram_block   ram_block3a_27
 	( 
@@ -1857,7 +1857,7 @@ module  datamem_altsyncram1
 		ram_block3a_27.port_b_logical_ram_depth = 256,
 		ram_block3a_27.port_b_logical_ram_width = 32,
 		ram_block3a_27.port_b_read_enable_write_enable_clock = "clock1",
-		ram_block3a_27.ram_block_type = "AUTO",
+		ram_block3a_27.ram_block_type = "M4K",
 		ram_block3a_27.lpm_type = "cycloneii_ram_block";
 	cycloneii_ram_block   ram_block3a_28
 	( 
@@ -1918,7 +1918,7 @@ module  datamem_altsyncram1
 		ram_block3a_28.port_b_logical_ram_depth = 256,
 		ram_block3a_28.port_b_logical_ram_width = 32,
 		ram_block3a_28.port_b_read_enable_write_enable_clock = "clock1",
-		ram_block3a_28.ram_block_type = "AUTO",
+		ram_block3a_28.ram_block_type = "M4K",
 		ram_block3a_28.lpm_type = "cycloneii_ram_block";
 	cycloneii_ram_block   ram_block3a_29
 	( 
@@ -1979,7 +1979,7 @@ module  datamem_altsyncram1
 		ram_block3a_29.port_b_logical_ram_depth = 256,
 		ram_block3a_29.port_b_logical_ram_width = 32,
 		ram_block3a_29.port_b_read_enable_write_enable_clock = "clock1",
-		ram_block3a_29.ram_block_type = "AUTO",
+		ram_block3a_29.ram_block_type = "M4K",
 		ram_block3a_29.lpm_type = "cycloneii_ram_block";
 	cycloneii_ram_block   ram_block3a_30
 	( 
@@ -2040,7 +2040,7 @@ module  datamem_altsyncram1
 		ram_block3a_30.port_b_logical_ram_depth = 256,
 		ram_block3a_30.port_b_logical_ram_width = 32,
 		ram_block3a_30.port_b_read_enable_write_enable_clock = "clock1",
-		ram_block3a_30.ram_block_type = "AUTO",
+		ram_block3a_30.ram_block_type = "M4K",
 		ram_block3a_30.lpm_type = "cycloneii_ram_block";
 	cycloneii_ram_block   ram_block3a_31
 	( 
@@ -2101,7 +2101,7 @@ module  datamem_altsyncram1
 		ram_block3a_31.port_b_logical_ram_depth = 256,
 		ram_block3a_31.port_b_logical_ram_width = 32,
 		ram_block3a_31.port_b_read_enable_write_enable_clock = "clock1",
-		ram_block3a_31.ram_block_type = "AUTO",
+		ram_block3a_31.ram_block_type = "M4K",
 		ram_block3a_31.lpm_type = "cycloneii_ram_block";
 	assign
 		address_a_wire = address_a,
@@ -2236,7 +2236,7 @@ endmodule
 // Retrieval info: PRIVATE: MAXIMUM_DEPTH NUMERIC "0"
 // Retrieval info: PRIVATE: MIFfilename STRING ""
 // Retrieval info: PRIVATE: NUMWORDS_A NUMERIC "256"
-// Retrieval info: PRIVATE: RAM_BLOCK_TYPE NUMERIC "0"
+// Retrieval info: PRIVATE: RAM_BLOCK_TYPE NUMERIC "2"
 // Retrieval info: PRIVATE: READ_DURING_WRITE_MODE_PORT_A NUMERIC "3"
 // Retrieval info: PRIVATE: RegAddr NUMERIC "1"
 // Retrieval info: PRIVATE: RegData NUMERIC "1"
@@ -2259,6 +2259,7 @@ endmodule
 // Retrieval info: CONSTANT: OUTDATA_ACLR_A STRING "NONE"
 // Retrieval info: CONSTANT: OUTDATA_REG_A STRING "UNREGISTERED"
 // Retrieval info: CONSTANT: POWER_UP_UNINITIALIZED STRING "FALSE"
+// Retrieval info: CONSTANT: RAM_BLOCK_TYPE STRING "M4K"
 // Retrieval info: CONSTANT: WIDTHAD_A NUMERIC "8"
 // Retrieval info: CONSTANT: WIDTH_A NUMERIC "32"
 // Retrieval info: CONSTANT: WIDTH_BYTEENA_A NUMERIC "1"
@@ -2277,6 +2278,6 @@ endmodule
 // Retrieval info: GEN_FILE: TYPE_NORMAL datamem.cmp FALSE
 // Retrieval info: GEN_FILE: TYPE_NORMAL datamem.bsf TRUE
 // Retrieval info: GEN_FILE: TYPE_NORMAL datamem_inst.v FALSE
-// Retrieval info: GEN_FILE: TYPE_NORMAL datamem_bb.v TRUE
+// Retrieval info: GEN_FILE: TYPE_NORMAL datamem_bb.v FALSE
 // Retrieval info: GEN_FILE: TYPE_NORMAL datamem_syn.v TRUE
 // Retrieval info: LIB_FILE: altera_mf
