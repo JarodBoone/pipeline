@@ -14,7 +14,7 @@
 
 // PROGRAM		"Quartus II 64-Bit"
 // VERSION		"Version 13.0.1 Build 232 06/12/2013 Service Pack 1 SJ Full Version"
-// CREATED		"Wed Apr 03 10:52:46 2019"
+// CREATED		"Tue Apr 23 18:12:03 2019"
 
 module pipeline(
 	CLOCK_50,
@@ -111,7 +111,7 @@ ProgramServer	b2v_inst3(
 	.clk(SYNTHESIZED_WIRE_47),
 	.hlt(SYNTHESIZED_WIRE_12),
 	.jump(SYNTHESIZED_WIRE_13),
-	.imm(SYNTHESIZED_WIRE_14),
+	.next(SYNTHESIZED_WIRE_14),
 	.instruction(SYNTHESIZED_WIRE_0),
 	.nextPC(SYNTHESIZED_WIRE_3),
 	.PC(SYNTHESIZED_WIRE_39));

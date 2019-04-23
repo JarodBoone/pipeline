@@ -1,21 +1,20 @@
 // This module is the lumped functionality of the program counter 
 // and instruction memory. This is where you should write your program 
 // and what will ultimately serve instructions to the processor. 
-module ProgramServer(clk,hlt,jump,imm,instruction,PC,nextPC); 
+module ProgramServer(clk,hlt,jump,next,instruction,PC,nextPC); 
 	// =========== I/O ============
 	input wire clk; // input clock 
 	input wire hlt; // is the processor enabled?  
-	input wire [31:0] imm; // the immediate value we go to 
-	input wire jump; // whether or not we jump to immediate
+	input wire [31:0] next; // the address of the instruction we jump to when jump is true  
+	input wire jump; // whether or not we jump to next
 	
-	output wire [31:0] instruction; 
-	// program counter. Unsigned 5 Bits ==> 0 <= PC <= 63  
-	output reg [31:0] PC; 
-	output reg [31:0] nextPC; 
+	output wire [31:0] instruction; // the current instruction
+	output reg [31:0] PC; // The "address" of the instruction we are currently executing 
+	output reg [31:0] nextPC; // Program counter + 1 to write to registers on jal type instructions 
 	
 	// =========== Internals ============
 	// internal register to simulate instruction memory can hold up 
-	// to 40 instructions 
+	// to 40 instruction, indexed by PC 
 	reg [31:0] iMemory [63:0];
 	
 	// Wire the instruction to be the instruction "memory" addressed 
@@ -191,20 +190,15 @@ module ProgramServer(clk,hlt,jump,imm,instruction,PC,nextPC);
 	// the processing path of control. This begins with instruction decoding 
 	// We need to figure out how many clock ticks the process takes for each instruction 
 	always @(posedge clk) begin
-		// wait 2 clock ticks before executing instructions 
-//		if (counter < 2) begin 
-//			counter = counter + 1; 
-//		end else begin 
-			if (~hlt) begin 
-				if (~jump) begin 
-					PC <= PC + 1;
-					nextPC <= PC + 2; 
-				end else begin 
-					PC <= imm;
-					nextPC <= imm + 1; 
-				end 
-			end
-		//end 
+		if (~hlt) begin // if hlt has been triggered the processor should be stopped 
+			if (~jump) begin // if we are not jumping then we just increment through instruction memory
+				PC <= PC + 1;
+				nextPC <= PC + 2; 
+			end else begin // if we are jumping then we are given an (absolute) address to jump to 
+				PC <= next;
+				nextPC <= next + 1; 
+			end 
+		end
 	end 
 
 endmodule 
