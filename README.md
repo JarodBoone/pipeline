@@ -30,3 +30,12 @@ When you update or change megafunctions it will add qip files to the project. th
 	- Megafunction Multiplication
   	- Explicit Combinational Immediate Generation 
 - Implement 3 Stage Pipeline
+
+## Current Status 
+| Date        | Code Version  |  Frequency           | Board  | 
+| ------------- |:-------------:| -----:| -----:|
+| 04/23/2019    | 1.0 | 30Mhz | 11 |
+
+
+
+
