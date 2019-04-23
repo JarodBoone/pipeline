@@ -1,5 +1,5 @@
 # pipeline
-Verilog files specifying a pipelined RISC-V processor. Build for the Altera DE2 FPGA and using the Quartus II software suite
+Verilog files specifying a pipelined RISC-V processor. Build for the Altera DE2 FPGA and using the Quartus II software suite. I had a stable operating frequency of about 30MHz so we will mark our improvements against that benchmark 
 
 ## How to install 
 - Clone the repository 
@@ -21,3 +21,12 @@ Verilog files specifying a pipelined RISC-V processor. Build for the Altera DE2 
 	- branch_logic.v 
 	- ALU.v
  - You need to enable in system memory viewing during runtime. To do this go to Assignments > Settings > Analysis and Synthesis Settings > Default Paramaters and type the parameter name `CYCLONEII_SAFE_WRITE` and assign its default value `RESTRUCTURE`
+
+## Notes 
+When you update or change megafunctions it will add qip files to the project. these are fine to include and don't affect too much as far as I can tell. Will let them through the gitignore in the near future 
+
+## Todo List 
+- Speed up Single Cycle processor 
+	- Megafunction Multiplication
+  	- Explicit Combinational Immediate Generation 
+- Implement 3 Stage Pipeline
