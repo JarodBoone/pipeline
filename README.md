@@ -43,10 +43,10 @@ Note that you are working in a vanilla Quartus Project and thus have made no com
 - Implement 3 Stage Pipeline
 
 ## Current Status 
-| Date        | Code Version  |  Frequency           | Board  | 
+| Date        | Code Version  |  Frequency           | Board  | Notes	| 
 | ------------- |:-------------:| -----:| -----:|
 | 04/23/2019    | 1.0 | 30Mhz | 11 |
-
+| 04/24/2019	| 1.0 | 30 MHz | 5 | Converted immediate generator to assign not functional yet
 
 
 
