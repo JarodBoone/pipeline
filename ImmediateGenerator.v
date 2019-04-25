@@ -5,7 +5,9 @@ module ImmediateGenerator(itype,jal,instruction,imm,jalr);
 //	output reg [31:0] imm;
 	output wire [31:0] imm;
 	
-	wire [31:0] imm_val;
+	wire branch;
+	wire s_type;
+	//wire [31:0] imm_val;
 //	
 //	assign imm[31:20] = {12{instruction[31]}}; // 12 bits
 //	assign imm[19:12] = ((jal) & (itype == 3'b110) ? instruction[19:12] : {8{instruction[31]}}); // 8 bits 
@@ -67,13 +69,15 @@ module ImmediateGenerator(itype,jal,instruction,imm,jalr);
 		
 		
 	end */
+
 	assign branch = &itype[2:1];
-	assign imm_val[31:20] = {12{instruction[31]}};
-	assign imm_val[19:12] = (jal) ? instruction[19:12] : {8{instruction[31]}};
-	assign imm_val[11] = (jal) ? instruction[20] : (branch) ? instruction[7] : instruction[31];
-	assign imm_val[10:5] = instruction[30:25];
-	assign imm_val[4:1] = (jal) ? instruction[24:21] : (branch) ? instruction[11:8] : instruction[24:21];
-	assign imm_val[0] = (jal | branch) ? 1'b0 : instruction[20];
-	assign imm = imm_val;//(jal | jalr | branch) ? imm_val >>> 2 : imm_val;
+	assign s_type = ((~itype[0])&itype[1]&(~itype[2]));
+	assign imm[31:20] = {12{instruction[31]}};
+	assign imm[19:12] = (jal) ? instruction[19:12] : {8{instruction[31]}};
+	assign imm[11] = (jal) ? instruction[20] : (branch) ? instruction[7] : instruction[31];
+	assign imm[10:5] = instruction[30:25];
+	assign imm[4:1] = (jal) ? instruction[24:21] : (branch | s_type) ? instruction[11:8] :instruction[24:21];
+	assign imm[0] = (jal | branch) ? 1'b0 :(s_type) ? instruction[7]: instruction[20];
+	//assign imm = imm_val;//(jal | jalr | branch) ? imm_val >>> 2 : imm_val;
 
 endmodule 
