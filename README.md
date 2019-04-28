@@ -47,6 +47,6 @@ Note that you are working in a vanilla Quartus Project and thus have made no com
 | ------------- |:-------------:| -----:| -----:|
 | 04/23/2019    | 1.0 | 30Mhz | 11 |
 | 04/24/2019	| 1.0 | 30 MHz | 5 | Converted immediate generator to assign not functional yet
-
+| 04/25/2019	| 1.0 | 50 MHz | 6 | Fixed immediate and branching logic
 
 

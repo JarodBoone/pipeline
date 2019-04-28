@@ -9,37 +9,34 @@ module branch_logic(clk,jal,branch,imm,arith,zero,funct3,jump,next,PC,jalr);
 	input wire signed [31:0] PC; 
 	input wire jalr; 
 	
-//	output reg jump;
-//	output reg[31:0] next; 
-//	
-//	initial begin 
-//		jump <= 0; 
-//		next <= 0; 
-//	end 
-//
-//	always @(negedge clk) begin 
-//		if (branch) begin 
-//			if (jal) begin 
-//				jump <= 1; 
-//				next <= ($signed(imm) >>> 2) + PC; 
-//			end else if (jalr) begin 
-//				jump <= 1; 
-//				next <= (arith); 
-//			end else begin 
-//				jump <= ((|funct3)^zero); 
-//				next <= ($signed(imm) >>> 2) + PC; 
-//			end 
-//		end else begin 
-//			jump <= 0; 
-//			next <= 0; 
-//		end 
-//	end 
+	output wire jump;
+	output wire[31:0] next; 
+	/*
+	initial begin 
+		jump <= 0; 
+		next <= 0; 
+	end 
+	*/
+	assign next = (jal) ? ($signed(imm) >>> 2) + PC : (jalr) ? arith  : (branch) ?  ($signed(imm) >>> 2) + PC : 0;
+	assign jump = (jal|jalr) ? 1 : (branch) ? ((|funct3)^zero) : 0;
 
-	output wire jump; 
-	output wire next; 
-	
-	// determine whether or not we want to jump 
-	assign jump = (branch) & ((jal | jalr) | ((|funct3)^zero));
-	assign next = jalr ? arith : ($signed(imm) >>> 2) + PC;
-
+	/*
+	always @(negedge clk) begin 
+		if (branch) begin 
+			if (jal) begin 
+				jump <= 1; 
+				next <= ($signed(imm) >>> 2) + PC; 
+			end else if (jalr) begin 
+				jump <= 1; 
+				next <= (arith); 
+			end else begin 
+				jump <= ((|funct3)^zero); 
+				next <= ($signed(imm) >>> 2) + PC; 
+			end 
+		end else begin 
+			jump <= 0; 
+			next <= 0; 
+		end 
+	end 
+*/
 endmodule 
