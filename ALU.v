@@ -12,7 +12,14 @@
 // computations. In the case where we are mapped to a set by the itype we use 
 // the funct7 and funct3 values to further determine which particular ALU 
 // function we need 
-module ALU(itype,x1,x2,funct7,funct3,out,zero); 
+module ALU(itype,
+	x1,
+	funct3,
+	funct7,
+	x2,
+	out,
+	zero,
+	out_funct3); 
 
 	// =========== I/O ============
 	input wire [2:0] itype; // the instruction type parsed by the iDecoder 
@@ -22,7 +29,8 @@ module ALU(itype,x1,x2,funct7,funct3,out,zero);
 	
 	output reg signed [31:0] out; // output number
 	output wire zero; // zero flag 
-	
+	output wire [2:0] out_funct3; // output funct3 to forward to the next pipline register
+	assign out_funct3 = funct3; 
 	// =========== Internals ============
 	wire x1_neg, x2_neg, out_neg;
 	wire signed [31:0] shift_result; // result of the shifting megafunction 

@@ -1,33 +1,49 @@
-module RegisterFile(clk,read_reg1,read_reg2,write_reg,write_data,reg_write,read_data1,read_data2); 
+module RegisterFile(clk,
+	read_reg1,
+	read_reg2,
+	write_reg,
+	reg_write,
+	write_data,
+	do_write_reg,
+	do_reg_write,
+	read_data1,
+	read_data2,
+	out_read_reg1, 
+	out_read_reg2, 
+	out_write_reg,
+	out_reg_write); 
 	
 	// =========== I/O ============
 	input wire [4:0] read_reg1; 
 	input wire [4:0] read_reg2; 
-	input wire [4:0] write_reg; 
-	input wire [31:0] write_data; 
+	input wire [4:0] write_reg; // write register to forward to pipeline register
+	input wire [4:0] do_write_reg; // write register from mem stage (actually write to this one!)
+	input wire [31:0] write_data; // the actual data to be written 
 	
 	// This module is clocked, because it has register states that 
 	// we need to synchronize per instruction. The idea is that by the time the next 
 	// posedge of the clock tick we have the proper value at 
 	input wire clk; 
-	input wire reg_write;
+	input wire reg_write; // reg_write flag to forward to pipeline register 
+	input wire do_reg_write; // reg_write flag from mem stage (actually write when this is high!) 
 	
-	output wire [31:0] read_data1; 
-	output wire [31:0] read_data2; 
+	output reg [31:0] read_data1; 
+	output reg [31:0] read_data2; 
+	
+	// Forwarding for bdf wire management
+	output wire [4:0] out_read_reg1; 
+	output wire [4:0] out_read_reg2; 
+	output wire [4:0] out_write_reg; 
+	output wire out_reg_write;
+	
+	assign out_read_reg1 = read_reg1; 
+	assign out_read_reg2 = read_reg2; 
+	assign out_write_reg = write_reg; 
+	assign out_reg_write = reg_write; 
 	
 	// =========== Internals ============
 	reg [31:0] registers [0:31]; // the actual registers (don't actually need a register for x0)
 	integer register_index; // index to initialize registers 
-	
-	// latch the write register. On the negative edge of the clock (after decoding is done and 
-	// all control signals should be set) that way we know on the next posedge of the clock (when 
-	// we want to read the results of memory or ALU operation) we will persist the reg_write flag and
-	// write the results that are on the wires. 
-//	reg reg_write_latch;
-//	reg [4:0] write_reg_latch; 
-	
-	assign read_data1 = registers[read_reg1];
-	assign read_data2 = registers[read_reg2]; 
 	
 	// I made the choice to zero out the registers at startup 
 	initial begin 
@@ -38,31 +54,26 @@ module RegisterFile(clk,read_reg1,read_reg2,write_reg,write_data,reg_write,read_
 		for (register_index = 3; register_index < 32; register_index = register_index + 1) begin 
 			registers[register_index] <= 32'b0000_0000_0000_0000_0000_0000_0000_0000; 
 		end 
-		
-		// we are not writing to the registers on the first clock tick, simply reading the first 
-		// instruction into memory 
-//		reg_write_latch <= reg_write; 
-//		write_reg_latch <= write_reg; 
 	
 	end 
 	
+	// write on the positive edge 
 	always @(posedge clk) begin 
 		// We write on the positive edge and read on the negative edge so that if we 
 		// write and read at the same time we will read the correct value (the one) we wrote at
 		//
 		// If write is enabled and the write register is not x0 then we want to read the write 
 		// data into the internal register indexed by write_reg 
-		if (reg_write & (write_reg != 5'b00000)) begin 
-			registers[write_reg] <= write_data; 
+		if (do_reg_write & (do_write_reg != 5'b00000)) begin 
+			registers[do_write_reg] <= write_data; 
 		end 
-	end 
+	end
 	
-//	always @(negedge clk) begin 
-//		// We read on the negative edge so that if we 
-//		// write and read at the same time we will read the correct value (the one) we wrote at
-//		reg_write_latch <= reg_write; 
-//		write_reg_latch <= write_reg;
-//	end 
+	// read at the negative edge of the clock 
+	always @(negedge clk) begin 
+		read_data1 <= registers[read_reg1];
+		read_data2 <= registers[read_reg2]; 
+	end
 	
 
 endmodule 

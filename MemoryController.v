@@ -1,9 +1,19 @@
-module MemoryController(clk,address,write_data,read_data,mem_write); 
+module MemoryController(clk,
+	address,
+	write_data,
+	mem_write, 
+	read_data,
+	out_alu_result); 
+	
+	
 	input wire clk; 
 	input wire[31:0] address; 
 	input wire[31:0] write_data; 
 	output wire[31:0] read_data; 
+	output wire[31:0] out_alu_result; 
 	input wire mem_write; 
+	
+	assign out_alu_result = address; 
 	
 	// Because the RAM is word addressable but verilog uses byte 
 	// addressing we resolve the bytes to words 

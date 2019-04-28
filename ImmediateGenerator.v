@@ -1,9 +1,16 @@
-module ImmediateGenerator(itype,jal,instruction,imm,jalr); 
+module ImmediateGenerator(itype,jal,jalr,instruction,imm,out_jal,out_jalr,out_itype); 
 	input wire [31:0] instruction; 
 	input wire [2:0] itype; 
 	input wire jal, jalr; 
 //	output reg [31:0] imm;
 	output wire [31:0] imm;
+	output wire out_jal, out_jalr; 
+	output wire [2:0] out_itype;
+	
+	// forwarding for wire management 
+	assign out_jal = jal; 
+	assign out_jalr = jalr;
+	assign out_itype = itype; 
 	
 	wire branch;
 	wire s_type;

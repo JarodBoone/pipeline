@@ -2,8 +2,22 @@
 // where we implement the "meaning" of bits in an instruction. This takes in a single 
 // 32 bit instruction and breaks it up into an anthology of output signals and busses that 
 // control the state of the CPU in its entirety 
-module iDecoder(instruction,forward,read_reg1,read_reg2,write_reg,
-	hlt,reg_write,mem_reg,mem_write,alu_src,branch,funct3,funct7,jal,jalr,itype); 
+module iDecoder(instruction,
+	read_reg1,
+	read_reg2,
+	write_reg,
+	reg_write,
+	branch,
+	mem_reg,
+	mem_write,
+	alu_src,
+	funct3,
+	funct7,
+	itype,
+	jal,
+	jalr,
+	forward,
+	hlt); 
 	
 	// =========== I/O ============
 	input wire [31:0] instruction; // the only input we get is the instruction 
