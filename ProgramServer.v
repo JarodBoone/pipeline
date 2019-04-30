@@ -1,12 +1,13 @@
 // This module is the lumped functionality of the program counter 
 // and instruction memory. This is where you should write your program 
 // and what will ultimately serve instructions to the processor. 
-module ProgramServer(clk,hlt,jump,next,instruction,PC,nextPC); 
+module ProgramServer(clk,hlt,jump,next,stall,instruction,PC,nextPC); 
 	// =========== I/O ============
 	input wire clk; // input clock 
 	input wire hlt; // is the processor enabled?  
 	input wire [31:0] next; // the address of the instruction we jump to when jump is true  
 	input wire jump; // whether or not we jump to next
+	input wire stall;
 	
 	output wire [31:0] instruction; // the current instruction
 	output reg [31:0] PC; // The "address" of the instruction we are currently executing 
@@ -198,7 +199,8 @@ module ProgramServer(clk,hlt,jump,next,instruction,PC,nextPC);
 // iMemory[31] = 32'h00000013;
 // iMemory[32] = 32'h00000013;
 
-
+//Final working version
+/*
 iMemory[0] = 32'h00600513;
 iMemory[1] = 32'h014000ef;
 iMemory[2] = 32'h00000013;
@@ -229,8 +231,37 @@ iMemory[26] = 32'h00810113;
 iMemory[27] = 32'h02550533;
 iMemory[28] = 32'h00008067;
 iMemory[29] = 32'h00000013;
-iMemory[30] = 32'h00000013;
+iMemory[30] = 32'h00000013;*/
 
+iMemory[0] = 32'h00600513;
+iMemory[1] = 32'h014000ef;
+iMemory[2] = 32'h00000013;
+iMemory[3] = 32'h00000013;
+iMemory[4] = 32'h00a02023;
+iMemory[5] = 32'b0000_0000_0000_0000_0000_0000_0111_1111; // HALT
+iMemory[6] = 32'hff810113;
+iMemory[7] = 32'h00112223;
+iMemory[8] = 32'h00a12023;
+iMemory[9] = 32'hfff50513;
+iMemory[10] = 32'h02051063;
+iMemory[11] = 32'h00000013;
+iMemory[12] = 32'h00000013;
+iMemory[13] = 32'h00100513;
+iMemory[14] = 32'h00810113;
+iMemory[15] = 32'h00008067;
+iMemory[16] = 32'h00000013;
+iMemory[17] = 32'h00000013;
+iMemory[18] = 32'hfd1ff0ef;
+iMemory[19] = 32'h00000013;
+iMemory[20] = 32'h00000013;
+iMemory[21] = 32'h00050293;
+iMemory[22] = 32'h00012503;
+iMemory[23] = 32'h00412083;
+iMemory[24] = 32'h00810113;
+iMemory[25] = 32'h02550533;
+iMemory[26] = 32'h00008067;
+iMemory[27] = 32'h00000013;
+iMemory[28] = 32'h00000013;
 
 		
 		
