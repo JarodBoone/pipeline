@@ -3,6 +3,7 @@
 // 32 bit instruction and breaks it up into an anthology of output signals and busses that 
 // control the state of the CPU in its entirety 
 module iDecoder(instruction,
+	bubble, 
 	read_reg1,
 	read_reg2,
 	write_reg,
@@ -21,6 +22,8 @@ module iDecoder(instruction,
 	
 	// =========== I/O ============
 	input wire [31:0] instruction; // the only input we get is the instruction 
+	input wire bubble; 
+	
 	output wire [31:0] forward; // the full instruction that will be forwarded 
 	output wire [4:0] read_reg1; // the first register to read 
 	output wire [4:0] read_reg2; // the second register to read 
@@ -78,14 +81,14 @@ module iDecoder(instruction,
 	// Oh look! A gray code! 
 	assign itype = opcode[6:4];
 	
-	assign hlt =&opcode; // Reduction AND of the opcode ==> 1 <==> (opcode == 7'b11111111)   
-	assign jal =&opcode[3:2]; // Reduction AND of the opcode[3:2] ==> 1 <==> (opcode == 7'bXXX11XX)   
-	assign jalr =^opcode[3:2]; // Reduction XOR of the opcode[3:2] ==> 1 <==> (opcode == 7'bXXX01XX || opcode == 7'bXXX10XX )   
-	assign branch =&itype[2:1]; // 11X ==> means we have a branch
-	assign mem_write = (~(itype[2]|itype[0]))&itype[1]; // 010 ==> mem_write
-	assign mem_reg =~|itype; // 000 ==> we are reading to reg from memory 
-	assign alu_src = ~(itype[2]|(&itype[1:0])); // 0XX and not X11 
-	assign reg_write = ((~|itype)|itype[0])|opcode[2]; // 000, 001, or 011 or a Ujump 
-	// assign mult =((&itype[1:0])&(~|funct3[2:0]))&((~|funct7[6:1])&funct7[0]); 
+	assign hlt =(~bubble)&(&opcode); // Reduction AND of the opcode ==> 1 <==> (opcode == 7'b11111111)   
+	assign jal =(~bubble)&(&opcode[3:2]); // Reduction AND of the opcode[3:2] ==> 1 <==> (opcode == 7'bXXX11XX)   
+	assign jalr =(~bubble)&(^opcode[3:2]); // Reduction XOR of the opcode[3:2] ==> 1 <==> (opcode == 7'bXXX01XX || opcode == 7'bXXX10XX )   
+	assign branch =(~bubble)&(&itype[2:1]); // 11X ==> means we have a branch
+	assign mem_write = (~bubble)&((~(itype[2]|itype[0]))&itype[1]); // 010 ==> mem_write
+	assign mem_reg =(~bubble)&(~|itype); // 000 ==> we are reading to reg from memory 
+	assign alu_src = (~bubble)&(~(itype[2]|(&itype[1:0]))); // 0XX and not X11 
+	assign reg_write = (~bubble)&(((~|itype)|itype[0])|opcode[2]); // 000, 001, or 011 or a Ujump 
+	// assign mult =(~bubble)&(((&itype[1:0])&(~|funct3[2:0]))&((~|funct7[6:1])&funct7[0])); 
 	
 endmodule
