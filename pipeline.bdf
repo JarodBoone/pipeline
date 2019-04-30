@@ -1512,7 +1512,7 @@ applicable agreement for further details.
 	)
 )
 (symbol
-	(rect 2008 688 2216 864)
+	(rect 2072 688 2280 864)
 	(text "hazardDetectionUnit" (rect 5 0 104 12)(font "Arial" ))
 	(text "inst17" (rect 8 160 37 172)(font "Arial" ))
 	(port
@@ -2862,15 +2862,6 @@ applicable agreement for further details.
 	(pt 2928 432)
 )
 (connector
-	(pt 2536 672)
-	(pt 1976 672)
-)
-(connector
-	(pt 1336 864)
-	(pt 1944 864)
-	(bus)
-)
-(connector
 	(pt 1336 416)
 	(pt 1336 728)
 	(bus)
@@ -2878,11 +2869,6 @@ applicable agreement for further details.
 (connector
 	(pt 1336 728)
 	(pt 1336 864)
-	(bus)
-)
-(connector
-	(pt 1352 880)
-	(pt 1960 880)
 	(bus)
 )
 (connector
@@ -2900,10 +2886,6 @@ applicable agreement for further details.
 	(pt 352 896)
 )
 (connector
-	(pt 1920 896)
-	(pt 352 896)
-)
-(connector
 	(pt 224 544)
 	(pt 352 544)
 )
@@ -2912,16 +2894,8 @@ applicable agreement for further details.
 	(pt 696 544)
 )
 (connector
-	(pt 320 928)
-	(pt 1992 928)
-)
-(connector
 	(pt 336 384)
 	(pt 336 912)
-)
-(connector
-	(pt 336 912)
-	(pt 1976 912)
 )
 (connector
 	(pt 192 384)
@@ -2949,98 +2923,6 @@ applicable agreement for further details.
 	(pt 400 368)
 )
 (connector
-	(pt 1960 656)
-	(pt 1960 752)
-	(bus)
-)
-(connector
-	(pt 1976 672)
-	(pt 1976 736)
-)
-(connector
-	(pt 1944 864)
-	(pt 1944 768)
-	(bus)
-)
-(connector
-	(pt 1960 880)
-	(pt 1960 784)
-	(bus)
-)
-(connector
-	(pt 1928 608)
-	(pt 1928 800)
-	(bus)
-)
-(connector
-	(pt 1920 896)
-	(pt 1920 720)
-)
-(connector
-	(pt 1920 720)
-	(pt 2008 720)
-)
-(connector
-	(pt 1976 736)
-	(pt 2008 736)
-)
-(connector
-	(pt 1960 752)
-	(pt 2008 752)
-	(bus)
-)
-(connector
-	(pt 1944 768)
-	(pt 2008 768)
-	(bus)
-)
-(connector
-	(pt 1960 784)
-	(pt 2008 784)
-	(bus)
-)
-(connector
-	(pt 1928 800)
-	(pt 2008 800)
-	(bus)
-)
-(connector
-	(pt 1480 656)
-	(pt 1960 656)
-	(bus)
-)
-(connector
-	(pt 1960 656)
-	(pt 2496 656)
-	(bus)
-)
-(connector
-	(pt 1320 608)
-	(pt 1928 608)
-	(bus)
-)
-(connector
-	(pt 1928 608)
-	(pt 2040 608)
-	(bus)
-)
-(connector
-	(pt 1976 912)
-	(pt 1976 816)
-)
-(connector
-	(pt 1976 816)
-	(pt 2008 816)
-)
-(connector
-	(pt 1992 928)
-	(pt 1992 832)
-)
-(connector
-	(pt 1992 832)
-	(pt 2008 832)
-)
-(connector
 	(pt -328 256)
 	(pt -360 256)
 )
@@ -3050,15 +2932,133 @@ applicable agreement for further details.
 )
 (connector
 	(pt -360 944)
-	(pt 2232 944)
+	(pt 2296 944)
 )
 (connector
-	(pt 2232 944)
-	(pt 2232 720)
+	(pt 2296 944)
+	(pt 2296 720)
 )
 (connector
-	(pt 2232 720)
-	(pt 2216 720)
+	(pt 2296 720)
+	(pt 2280 720)
+)
+(connector
+	(pt 320 928)
+	(pt 2056 928)
+)
+(connector
+	(pt 2056 928)
+	(pt 2056 832)
+)
+(connector
+	(pt 2072 832)
+	(pt 2056 832)
+)
+(connector
+	(pt 336 912)
+	(pt 2040 912)
+)
+(connector
+	(pt 2040 912)
+	(pt 2040 816)
+)
+(connector
+	(pt 2072 816)
+	(pt 2040 816)
+)
+(connector
+	(pt 1352 880)
+	(pt 2024 880)
+	(bus)
+)
+(connector
+	(pt 2024 880)
+	(pt 2024 784)
+	(bus)
+)
+(connector
+	(pt 2072 784)
+	(pt 2024 784)
+	(bus)
+)
+(connector
+	(pt 1336 864)
+	(pt 2008 864)
+	(bus)
+)
+(connector
+	(pt 2008 864)
+	(pt 2008 768)
+	(bus)
+)
+(connector
+	(pt 2072 768)
+	(pt 2008 768)
+	(bus)
+)
+(connector
+	(pt 2536 672)
+	(pt 2056 672)
+)
+(connector
+	(pt 2056 672)
+	(pt 2056 736)
+)
+(connector
+	(pt 2072 736)
+	(pt 2056 736)
+)
+(connector
+	(pt 352 896)
+	(pt 1992 896)
+)
+(connector
+	(pt 1992 896)
+	(pt 1992 720)
+)
+(connector
+	(pt 2072 720)
+	(pt 1992 720)
+)
+(connector
+	(pt 1960 608)
+	(pt 1960 800)
+	(bus)
+)
+(connector
+	(pt 2072 800)
+	(pt 1960 800)
+	(bus)
+)
+(connector
+	(pt 1320 608)
+	(pt 1960 608)
+	(bus)
+)
+(connector
+	(pt 1960 608)
+	(pt 2040 608)
+	(bus)
+)
+(connector
+	(pt 2040 656)
+	(pt 2040 752)
+	(bus)
+)
+(connector
+	(pt 2072 752)
+	(pt 2040 752)
+	(bus)
+)
+(connector
+	(pt 1480 656)
+	(pt 2040 656)
+	(bus)
+)
+(connector
+	(pt 2040 656)
+	(pt 2496 656)
+	(bus)
 )
 (junction (pt -344 192))
 (junction (pt 808 -168))
@@ -3073,10 +3073,10 @@ applicable agreement for further details.
 (junction (pt 264 208))
 (junction (pt 864 -48))
 (junction (pt 2536 432))
-(junction (pt 1960 656))
 (junction (pt 1352 744))
 (junction (pt 1336 728))
-(junction (pt 1928 608))
 (junction (pt 352 544))
 (junction (pt 336 384))
 (junction (pt 320 368))
+(junction (pt 1960 608))
+(junction (pt 2040 656))
