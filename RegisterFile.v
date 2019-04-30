@@ -11,7 +11,8 @@ module RegisterFile(clk,
 	out_read_reg1, 
 	out_read_reg2, 
 	out_write_reg,
-	out_reg_write); 
+	out_reg_write
+	); 
 	
 	// =========== I/O ============
 	input wire [4:0] read_reg1; 
@@ -43,6 +44,9 @@ module RegisterFile(clk,
 	
 	// =========== Internals ============
 	reg [31:0] registers [0:31]; // the actual registers (don't actually need a register for x0)
+	wire [31:0] register_out; 
+	assign register_out = registers[do_write_reg]; 
+	
 	integer register_index; // index to initialize registers 
 	
 	// I made the choice to zero out the registers at startup 
@@ -70,9 +74,9 @@ module RegisterFile(clk,
 	end
 	
 	// read at the negative edge of the clock 
-	always @(negedge clk) begin 
-		read_data1 <= registers[read_reg1];
-		read_data2 <= registers[read_reg2];
+	always @* begin 
+		read_data1 = registers[read_reg1];
+		read_data2 = registers[read_reg2];
 	end
 	
 

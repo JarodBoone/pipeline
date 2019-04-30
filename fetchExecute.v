@@ -22,6 +22,9 @@ module fetchExecute(clk,
 	in_funct7,
 	in_PC,
 	in_nextPC, 
+	in_forwardC, 
+	in_forwardD, 
+	in_write_data, 
 	out_itype, 
 	out_read_data1,
 	out_funct3,
@@ -60,7 +63,12 @@ module fetchExecute(clk,
     input wire [6:0] in_funct7;
 	 input wire [31:0] in_PC;
     input wire [31:0] in_nextPC;
-
+	 
+	 // forwarding logic 
+	 input wire in_forwardC;
+	 input wire in_forwardD;
+	 input wire [31:0] in_write_data; 
+	 
     // necessary for collision detection 
     input wire [4:0] in_read_reg1; 
     input wire [4:0] in_read_reg2;
@@ -85,11 +93,12 @@ module fetchExecute(clk,
     output reg [4:0] out_write_reg;
 	 output reg [4:0] out_read_reg1;
 	 output reg [4:0] out_read_reg2;
+	
 	 
     always @(posedge clk) begin 
 
-         out_read_data1 <= in_read_data1;
-         out_read_data2 <= in_read_data2;
+         out_read_data1 <= in_forwardC ? in_write_data : in_read_data1;
+         out_read_data2 <= in_forwardD ? in_write_data : in_read_data2;
          out_imm <= in_imm;
          out_reg_write <= in_reg_write;
          out_mem_reg <= in_mem_reg;
@@ -104,6 +113,7 @@ module fetchExecute(clk,
          out_nextPC <= in_nextPC;
          out_write_reg <= in_write_reg; 
 			out_PC <= in_PC; 
+			
          out_read_reg1 <= in_read_reg1;
          out_read_reg2 <= in_read_reg2;
 
