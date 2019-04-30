@@ -14,14 +14,18 @@
 
 // PROGRAM		"Quartus II 64-Bit"
 // VERSION		"Version 13.0.1 Build 232 06/12/2013 Service Pack 1 SJ Full Version"
-// CREATED		"Sun Apr 28 18:31:25 2019"
+// CREATED		"Mon Apr 29 16:59:07 2019"
 
 module pipeline(
-	CLOCK_50
+	CLOCK_50,
+	fuck_imm,
+	fuck_PC
 );
 
 
 input wire	CLOCK_50;
+output wire	[31:0] fuck_imm;
+output wire	[31:0] fuck_PC;
 
 wire	[31:0] SYNTHESIZED_WIRE_0;
 wire	SYNTHESIZED_WIRE_79;
@@ -282,6 +286,8 @@ branch_logic	b2v_inst8(
 	.jump(SYNTHESIZED_WIRE_47),
 	.out_jal(SYNTHESIZED_WIRE_24),
 	.out_jalr(SYNTHESIZED_WIRE_23),
+	.fuck_imm(fuck_imm),
+	.fuck_PC(fuck_PC),
 	.next(SYNTHESIZED_WIRE_48));
 
 

@@ -107,25 +107,99 @@ module ProgramServer(clk,hlt,jump,next,instruction,PC,nextPC);
 ///////////////////////////////////////////////////////		
 ///////UNCOMMENT BELOW TO RUN FACTORIAL(6) ////////////
 ////////////////////////////////////////////////////// 
-		iMemory[0] = 32'h00600513; // addi a0, x0, 6
-		iMemory[1] = 32'h00c000ef; //	jal ra, fact
-		iMemory[2] = 32'h00a02023; //	sw a0, 0(x0)
-		iMemory[3] = 32'b0000_0000_0000_0000_0000_0000_0111_1111; // HALT	
-		iMemory[4] = 32'hff810113; //	fact:	addi sp, sp, -8
-		iMemory[5] = 32'h00112223; //	sw ra, 4(sp)
-		iMemory[6] = 32'h00a12023; //	sw a0, 0(sp)
-		iMemory[7] = 32'hfff50513; //	addi a0, a0, -1
-		iMemory[8] = 32'h00051863; //	bne a0, x0, else
-		iMemory[9] = 32'h00100513; //	addi a0, x0, 1
-		iMemory[10] = 32'h00810113; // addi sp, sp, 8
-		iMemory[11] = 32'h00008067; // jalr x0, 0(ra)
-		iMemory[12] = 32'hfe1ff0ef; // else: jal ra, fact
-		iMemory[13] = 32'h00050293; // addi t0, a0,0
-		iMemory[14] = 32'h00012503; // lw a0, 0(sp)
-		iMemory[15] = 32'h00412083; // lw ra, 4(sp)
-		iMemory[16] = 32'h00810113; // addi sp, sp, 8
-		iMemory[17] = 32'h02550533; // mul a0, a0, t0
-		iMemory[18] = 32'h00008067; // jalr x0, 0(ra)
+	/*	iMemory[0] = 32'h00600513; // addi a0, x0, 6
+		iMemory[1] = 32'h014000ef; //	jal ra, fact
+		iMemory[2] = 32'h00000013; // NOP
+		iMemory[3] = 32'h00000013; // NOP	
+		iMemory[4] = 32'h00a02023; //	sw a0, 0(x0)
+		iMemory[5] = 32'b0000_0000_0000_0000_0000_0000_0111_1111; // HALT	
+		iMemory[6] = 32'hff810113; //	fact:	addi sp, sp, -8
+		iMemory[7] = 32'h00112223; //	sw ra, 4(sp)
+		iMemory[8] = 32'h00a12023; //	sw a0, 0(sp)
+		iMemory[9] = 32'hfff50513; //	addi a0, a0, -1
+		iMemory[10] = 32'h00051863; //	bne a0, x0, else
+		iMemory[11] = 32'h00100513; //	addi a0, x0, 1
+		iMemory[12] = 32'h00810113; // addi sp, sp, 8
+		iMemory[13] = 32'h00008067; // jalr x0, 0(ra)
+		iMemory[14] = 32'hfe1ff0ef; // else: jal ra, fact
+		iMemory[15] = 32'h00050293; // addi t0, a0,0
+		iMemory[16] = 32'h00012503; // lw a0, 0(sp)
+		iMemory[17] = 32'h00412083; // lw ra, 4(sp)
+		iMemory[18] = 32'h00810113; // addi sp, sp, 8
+		iMemory[19] = 32'h02550533; // mul a0, a0, t0
+		iMemory[20] = 32'h00008067; // jalr x0, 0(ra)
+		*/
+//Factorial with Nops
+
+// iMemory[0] = 32'h00600513;
+// iMemory[1] = 32'h014000ef;
+// iMemory[2] = 32'h00000013;
+// iMemory[3] = 32'h00000013;
+// iMemory[4] = 32'h00a02023;
+// iMemory[5] = 32'b0000_0000_0000_0000_0000_0000_0111_1111; // HALT	
+// iMemory[6] = 32'hff810113;
+// iMemory[7] = 32'h00000013;
+// iMemory[8] = 32'h00112223;
+// iMemory[9] = 32'h00a12023;
+// iMemory[10] = 32'hfff50513;
+// iMemory[11] = 32'h00000013;
+// iMemory[12] = 32'h02051063;
+// iMemory[13] = 32'h00000013;
+// iMemory[14] = 32'h00000013;
+// iMemory[15] = 32'h00100513;
+// iMemory[16] = 32'h00810113;
+// iMemory[17] = 32'h00008067;
+// iMemory[18] = 32'h00000013;
+// iMemory[19] = 32'h00000013;
+// iMemory[20] = 32'hfc9ff0ef;
+// iMemory[21] = 32'h00000013;
+// iMemory[22] = 32'h00000013;
+// iMemory[23] = 32'h00050293;
+// iMemory[24] = 32'h00012503;
+// iMemory[25] = 32'h00412083;
+// iMemory[26] = 32'h00810113;
+// iMemory[27] = 32'h02550533;
+// iMemory[28] = 32'h00008067;
+// iMemory[29] = 32'h00000013;
+// iMemory[30] = 32'h00000013;
+
+
+iMemory[0] = 32'h00600513;
+iMemory[1] = 32'h014000ef;
+iMemory[2] = 32'h00000013;
+iMemory[3] = 32'h00000013;
+iMemory[4] = 32'h00a02023;
+iMemory[5] = 32'b0000_0000_0000_0000_0000_0000_0111_1111; // HALT	
+iMemory[6] = 32'hff810113;
+iMemory[7] = 32'h00000013;
+iMemory[8] = 32'h00000013;
+iMemory[9] = 32'h00112223;
+iMemory[10] = 32'h00a12023;
+iMemory[11] = 32'hfff50513;
+iMemory[12] = 32'h00000013;
+iMemory[13] = 32'h00000013;
+iMemory[14] = 32'h02051063;
+iMemory[15] = 32'h00000013;
+iMemory[16] = 32'h00000013;
+iMemory[17] = 32'h00100513;
+iMemory[18] = 32'h00810113;
+iMemory[19] = 32'h00008067;
+iMemory[20] = 32'h00000013;
+iMemory[21] = 32'h00000013;
+iMemory[22] = 32'hfc1ff0ef;
+iMemory[23] = 32'h00000013;
+iMemory[24] = 32'h00000013;
+iMemory[25] = 32'h00050293;
+iMemory[26] = 32'h00012503;
+iMemory[27] = 32'h00412083;
+iMemory[28] = 32'h00810113;
+iMemory[29] = 32'h02550533;
+iMemory[30] = 32'h00008067;
+iMemory[31] = 32'h00000013;
+iMemory[32] = 32'h00000013;
+
+		
+		
 
 
 ///////////////////////////////////////////////////////		

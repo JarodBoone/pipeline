@@ -72,7 +72,7 @@ module RegisterFile(clk,
 	// read at the negative edge of the clock 
 	always @(negedge clk) begin 
 		read_data1 <= registers[read_reg1];
-		read_data2 <= registers[read_reg2]; 
+		read_data2 <= registers[read_reg2];
 	end
 	
 

@@ -9,7 +9,9 @@ module branch_logic(jal,
 	jump,
 	next, 
 	out_jal,
-	out_jalr);
+	out_jalr,
+	fuck_PC,
+	fuck_imm);
 	
 	input wire jal;
 	input wire branch; 
@@ -23,11 +25,16 @@ module branch_logic(jal,
 	output wire jump;
 	output wire[31:0] next; 
 	output wire out_jal, out_jalr; 
+	output wire [31:0] fuck_PC;
+	output wire [31:0] fuck_imm; 
+	
+	assign fuck_PC = PC; 
+	assign fuck_imm = $signed(imm) >>> 2; 
 	
 	assign out_jal = jal; 
 	assign out_jalr = jalr; 
 
-	assign next = (jal) ? ($signed(imm) >>> 2) + PC : (jalr) ? alu_result  : (branch) ?  ($signed(imm) >>> 2) + PC : 0;
+	assign next = ((jal|branch)&(~jalr)) ? fuck_imm + PC : alu_result;
 	assign jump = (jal|jalr) ? 1 : (branch) ? ((|funct3)^zero) : 0;
 	
 endmodule 
