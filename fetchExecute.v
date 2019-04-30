@@ -37,7 +37,9 @@ module fetchExecute(clk,
 	out_alu_src,
 	out_PC,
 	out_nextPC,
-	out_write_reg); 
+	out_write_reg,
+	out_read_reg1,
+	out_read_reg2); 
 
     // the clock signal 
     input wire clk; 
@@ -81,7 +83,9 @@ module fetchExecute(clk,
 	 output reg [31:0] out_PC;
     output reg [31:0] out_nextPC;
     output reg [4:0] out_write_reg;
-
+	 output reg [4:0] out_read_reg1;
+	 output reg [4:0] out_read_reg2;
+	 
     always @(posedge clk) begin 
 
          out_read_data1 <= in_read_data1;
@@ -100,7 +104,8 @@ module fetchExecute(clk,
          out_nextPC <= in_nextPC;
          out_write_reg <= in_write_reg; 
 			out_PC <= in_PC; 
-
+         out_read_reg1 <= in_read_reg1;
+         out_read_reg2 <= in_read_reg2;
 
     end  
 
