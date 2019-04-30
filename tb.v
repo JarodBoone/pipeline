@@ -28,8 +28,16 @@ module tb;
 	wire jal; 
 	wire jalr; 
 	wire [31:0] regwrite_data; 
+	wire [31:0] fuck_imm;
+	wire [31:0] fuck_PC;
 	
-	SAFEV s1(.CLOCK_50(clk), 
+	module pipeline(
+	.CLOCK_50(clk),
+	.fastclk(real_clk),
+	.fuck_imm(fuck_imm),
+	.fuck_PC(fuck_PC)
+);
+	/*SAFEV s1(.CLOCK_50(clk), 
 		.real_clk(real_clk), 
 		.instruction(instruction), 
 		.hlt(hlt),
@@ -55,7 +63,7 @@ module tb;
 		.jal(jal), 
 		.jalr(jalr), 
 		.regwrite_data(regwrite_data)
-		);
+		);*/
 	
 	// initialization block 
 	initial begin 	
@@ -67,7 +75,7 @@ module tb;
 		#5 clk = ~clk; 
 	
 	initial
-		#1000 $stop;
+		#2000 $stop;
 
 
 endmodule

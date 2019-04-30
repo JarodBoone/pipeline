@@ -27,7 +27,7 @@ module ProgramServer(clk,
 	// to 40 instruction, indexed by PC 
 	reg [31:0] iMemory [63:0];
 	
-	integer stall_for; 
+	reg stall_buffer; 
 	
 	// Wire the instruction to be the instruction "memory" addressed 
 	// by the program counter 
@@ -119,32 +119,32 @@ module ProgramServer(clk,
 ///////////////////////////////////////////////////////		
 ///////UNCOMMENT BELOW TO RUN FACTORIAL(6) ////////////
 ////////////////////////////////////////////////////// 
-	/*	iMemory[0] = 32'h00600513; // addi a0, x0, 6
-		iMemory[1] = 32'h014000ef; //	jal ra, fact
-		iMemory[2] = 32'h00000013; // NOP
-		iMemory[3] = 32'h00000013; // NOP	
-		iMemory[4] = 32'h00a02023; //	sw a0, 0(x0)
-		iMemory[5] = 32'b0000_0000_0000_0000_0000_0000_0111_1111; // HALT	
-		iMemory[6] = 32'hff810113; //	fact:	addi sp, sp, -8
-		iMemory[7] = 32'h00112223; //	sw ra, 4(sp)
-		iMemory[8] = 32'h00a12023; //	sw a0, 0(sp)
-		iMemory[9] = 32'hfff50513; //	addi a0, a0, -1
-		iMemory[10] = 32'h00051863; //	bne a0, x0, else
-		iMemory[11] = 32'h00100513; //	addi a0, x0, 1
-		iMemory[12] = 32'h00810113; // addi sp, sp, 8
-		iMemory[13] = 32'h00008067; // jalr x0, 0(ra)
-		iMemory[14] = 32'hfe1ff0ef; // else: jal ra, fact
-		iMemory[15] = 32'h00050293; // addi t0, a0,0
-		iMemory[16] = 32'h00012503; // lw a0, 0(sp)
-		iMemory[17] = 32'h00412083; // lw ra, 4(sp)
-		iMemory[18] = 32'h00810113; // addi sp, sp, 8
-		iMemory[19] = 32'h02550533; // mul a0, a0, t0
-		iMemory[20] = 32'h00008067; // jalr x0, 0(ra)
-		*/
+//		iMemory[0] = 32'h00600513; // addi a0, x0, 6
+//		iMemory[1] = 32'h014000ef; //	jal ra, fact
+//		iMemory[2] = 32'h00000013; // NOP
+//		iMemory[3] = 32'h00000013; // NOP	
+//		iMemory[4] = 32'h00a02023; //	sw a0, 0(x0)
+//		iMemory[5] = 32'b0000_0000_0000_0000_0000_0000_0111_1111; // HALT	
+//		iMemory[6] = 32'hff810113; //	fact:	addi sp, sp, -8
+//		iMemory[7] = 32'h00112223; //	sw ra, 4(sp)
+//		iMemory[8] = 32'h00a12023; //	sw a0, 0(sp)
+//		iMemory[9] = 32'hfff50513; //	addi a0, a0, -1
+//		iMemory[10] = 32'h00051863; //	bne a0, x0, else
+//		iMemory[11] = 32'h00100513; //	addi a0, x0, 1
+//		iMemory[12] = 32'h00810113; // addi sp, sp, 8
+//		iMemory[13] = 32'h00008067; // jalr x0, 0(ra)
+//		iMemory[14] = 32'hfe1ff0ef; // else: jal ra, fact
+//		iMemory[15] = 32'h00050293; // addi t0, a0,0
+//		iMemory[16] = 32'h00012503; // lw a0, 0(sp)
+//		iMemory[17] = 32'h00412083; // lw ra, 4(sp)
+//		iMemory[18] = 32'h00810113; // addi sp, sp, 8
+//		iMemory[19] = 32'h02550533; // mul a0, a0, t0
+//		iMemory[20] = 32'h00008067; // jalr x0, 0(ra)
+		
 //Factorial with Nops
 
 
-iMemory[0] = 32'h00600513;
+/*iMemory[0] = 32'h00600513;
 iMemory[1] = 32'h014000ef;
 iMemory[2] = 32'h00000013;
 iMemory[3] = 32'h00000013;
@@ -174,7 +174,7 @@ iMemory[26] = 32'h00008067;
 iMemory[27] = 32'h00000013;
 iMemory[28] = 32'h00000013;
 
-		
+*/		
 		
 
 
@@ -234,6 +234,35 @@ iMemory[28] = 32'h00000013;
 //		iMemory[22] = 32'h00100593;
 //		iMemory[23] = 32'h00008067;
 
+iMemory[0] = 32'h00c00513;
+iMemory[1] = 32'h010000ef;
+iMemory[2] = 32'h00b02023;
+iMemory[3] = 32'b0000_0000_0000_0000_0000_0000_0111_1111; // HALT
+iMemory[4] = 32'h00a00513;
+iMemory[5] = 32'h04050863;
+iMemory[6] = 32'hfff50513;
+iMemory[7] = 32'h04050463;
+iMemory[8] = 32'hff410113;
+iMemory[9] = 32'h00112023;
+iMemory[10] = 32'h00a12223;
+iMemory[11] = 32'hfe9ff0ef;
+iMemory[12] = 32'h00b00333;
+iMemory[13] = 32'h00612423;
+iMemory[14] = 32'h00412503;
+iMemory[15] = 32'hfff50513;
+iMemory[16] = 32'hfd5ff0ef;
+iMemory[17] = 32'h00b003b3;
+iMemory[18] = 32'h00812303;
+iMemory[19] = 32'h00000013;
+iMemory[20] = 32'h00000013;
+iMemory[21] = 32'h007305b3;
+iMemory[22] = 32'h00012083;
+iMemory[23] = 32'h00c10113;
+iMemory[24] = 32'h00008067;
+iMemory[25] = 32'h00100593;
+iMemory[26] = 32'h00008067;
+
+
 	end 
 
 	
@@ -242,19 +271,23 @@ iMemory[28] = 32'h00000013;
 	// We need to figure out how many clock ticks the process takes for each instruction 
 	always @(posedge clk) begin
 		if (~hlt) begin // if hlt has been triggered the processor should be stopped 
-			if (~jump) begin // if we are not jumping then we just increment through instruction memory
-				PC <= PC + 1;
-				nextPC <= PC + 2; 
-			end else begin // if we are jumping then we are given an (absolute) address to jump to 
-				PC <= next;
-				nextPC <= next + 1; 
-			end 
-			
 			if (stall) begin 
-				stall_for <= 2;
-			end else if (stall_for) begin
-				bubble <= 1;
-				stall_for <= stall_for - 1; 
+				stall_buffer <= 1; 
+				bubble <= 1; 
+			end else begin 
+				if (stall_buffer) begin 
+					stall_buffer <= 0; 
+					bubble <= 1; 
+				end else begin 
+					bubble <= 0; 
+					if (~jump) begin // if we are not jumping then we just increment through instruction memory
+						PC <= PC + 1;
+						nextPC <= PC + 2; 
+					end else begin // if we are jumping then we are given an (absolute) address to jump to 
+						PC <= next;
+						nextPC <= next + 1; 
+					end 
+				end 
 			end 
 		end
 	end 
