@@ -56,45 +56,48 @@ module ALU(itype,
 		case (itype) 
 			// Load or store instruction type 
 			`LOAD, `STORE : begin // if it is a load or a store we need to perform an add 
-				out <= x1 + x2; // add
+				out = x1 + x2; // add
 			end 
 			// Branch or Jal instruction type 
 			`BRANCH : begin // if it is a subtract 
 				// eventually will need to case jal and jalr in here, I think they need to be an add? 
-				out <= x1 - x2; // subtract 
+				out = x1 - x2; // subtract 
 			end 
 			`RTYPE , `ITYPE : begin // if it is an R or I type we need to figure out what operation based off funct7 
 				if (funct7 == 7'b0100000) begin 
-					out <= x1 - x2; // subtract 
+					out = x1 - x2; // subtract 
 				end else begin 
 					case (funct3)
 						3'b000 : begin 
-							out <= x1 + x2; // add
+							
+							
 							if (funct7 == 7'b0000001) begin 
-								out <= mult_result[31:0]; // multiply 
+								out = mult_result[31:0]; // multiply 
+							end else begin 
+								out = x1 + x2; // add
 							end 
 						end 
 						
 						3'b001 : begin 
-							out <= shift_result; // Left shift  
+							out = shift_result; // Left shift  
 						end 
 						
 						3'b110 : begin 
-							out <= x1 | x2; // bitwise OR 
+							out = x1 | x2; // bitwise OR 
 						end 
 						
 						3'b111 : begin 
-							out <= x1 & x2; // bitwise AND 
+							out = x1 & x2; // bitwise AND 
 						end 
 						
 						default : begin 
-							out <= 0; 
+							out = 0; 
 						end
 					endcase // end funct3 case
 				end // end if Not SUB or MUL
 			end // end if R or I type case
 			default : begin 
-				out <= 0; 
+				out = 0; 
 			end
 		endcase 
 	end 

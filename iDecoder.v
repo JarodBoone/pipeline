@@ -16,7 +16,7 @@ module iDecoder(instruction,
 	itype,
 	jal,
 	jalr,
-	forward,
+	forward, 
 	hlt); 
 	
 	// =========== I/O ============
@@ -37,6 +37,7 @@ module iDecoder(instruction,
 	// Let the ALU decide what to do based on I-type and funct fields 
 	output wire [6:0] funct7; 
 	output wire [2:0] funct3; 
+	// output wire mult; // ... except for multiplication, lets figure that shit out ASAP
 	
 	// extras 
 	output wire jal; // need to special case a jump and link instruction 
@@ -85,5 +86,6 @@ module iDecoder(instruction,
 	assign mem_reg =~|itype; // 000 ==> we are reading to reg from memory 
 	assign alu_src = ~(itype[2]|(&itype[1:0])); // 0XX and not X11 
 	assign reg_write = ((~|itype)|itype[0])|opcode[2]; // 000, 001, or 011 or a Ujump 
+	// assign mult =((&itype[1:0])&(~|funct3[2:0]))&((~|funct7[6:1])&funct7[0]); 
 	
 endmodule
