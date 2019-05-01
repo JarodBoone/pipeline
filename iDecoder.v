@@ -87,7 +87,7 @@ module iDecoder(instruction,
 	assign branch =(~bubble)&(&itype[2:1]); // 11X ==> means we have a branch
 	assign mem_write = (~bubble)&((~(itype[2]|itype[0]))&itype[1]); // 010 ==> mem_write
 	assign mem_reg =(~bubble)&(~|itype); // 000 ==> we are reading to reg from memory 
-	assign alu_src = (~bubble)&(~(itype[2]|(&itype[1:0]))); // 0XX and not X11 
+	assign alu_src = (~(itype[2]|(&itype[1:0]))); // 0XX and not X11 
 	assign reg_write = (~bubble)&(((~|itype)|itype[0])|opcode[2]); // 000, 001, or 011 or a Ujump 
 	// assign mult =(~bubble)&(((&itype[1:0])&(~|funct3[2:0]))&((~|funct7[6:1])&funct7[0])); 
 	

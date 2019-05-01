@@ -31,7 +31,7 @@ module tb;
 	wire [31:0] fuck_imm;
 	wire [31:0] fuck_PC;
 	
-	module pipeline(
+	pipeline p1(
 	.CLOCK_50(clk),
 	.fastclk(real_clk),
 	.fuck_imm(fuck_imm),

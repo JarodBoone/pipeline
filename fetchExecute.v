@@ -25,6 +25,7 @@ module fetchExecute(clk,
 	in_forwardC, 
 	in_forwardD, 
 	in_write_data, 
+	in_bubble, 
 	out_itype, 
 	out_read_data1,
 	out_funct3,
@@ -63,6 +64,7 @@ module fetchExecute(clk,
     input wire [6:0] in_funct7;
 	 input wire [31:0] in_PC;
     input wire [31:0] in_nextPC;
+	 input wire in_bubble; 
 	 
 	 // forwarding logic 
 	 input wire in_forwardC;
@@ -94,8 +96,12 @@ module fetchExecute(clk,
 	 output reg [4:0] out_read_reg1;
 	 output reg [4:0] out_read_reg2;
 	
-	 
-    always @(posedge clk) begin 
+	 wire [5:0] next_reg1, next_reg2, next_write_reg;
+	 assign next_reg1 = in_bubble ? 5'b0 : in_read_reg1;
+	 assign next_reg2 = in_bubble ? 5'b0 : in_read_reg2;
+	 assign next_write_reg = in_bubble ? 5'b0 : in_write_reg;
+    
+	 always @(posedge clk) begin 
 
          out_read_data1 <= in_forwardC ? in_write_data : in_read_data1;
          out_read_data2 <= in_forwardD ? in_write_data : in_read_data2;
