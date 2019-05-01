@@ -44,10 +44,8 @@ module RegisterFile(clk,
 	
 	// =========== Internals ============
 	reg [31:0] registers [0:31]; // the actual registers (don't actually need a register for x0)
-	wire [31:0] register_out; 
 	wire [31:0] next_x30; 
 	assign next_x30 = registers[30] + 1;
-	assign register_out = registers[do_write_reg]; 
 	
 	integer register_index; // index to initialize registers 
 	

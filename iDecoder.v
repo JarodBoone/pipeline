@@ -37,7 +37,7 @@ module iDecoder(instruction,
 	output wire mem_write; // write to memory? 
 	output wire alu_src; // second ALU input (read_reg2) or immediate value? 
 	output wire branch; // whether or not we are executing a branch instruction 
-	output wire [2:0] ALUop;
+	output reg [2:0] ALUop;
 	
 	// Let the ALU decide what to do based on I-type and funct fields 
 	output wire [6:0] funct7; 
@@ -95,12 +95,14 @@ module iDecoder(instruction,
 	
 	always @* begin 
 		casez ({itype,funct3,funct7})
-			010_000_z0zzzzz, 000_000_z0zzzzz : ALUop = 000; 
-				
-		
-		
+			13'b010_zzz_zzzzzzz, 13'b000_zzz_zzzzzzz, 13'b011_000_0000000, 13'b001_000_zzzzzzz : ALUop = 3'b000; // addition 
+			13'b110_zzz_zzzzzzz, 13'b011_000_0100000 : ALUop = 3'b001; // subtraction 
+			13'b001_001_zzzzzzz, 13'b011_001_zzzzzzz : ALUop = 3'b011; // shift 
+			13'b001_110_zzzzzzz, 13'b011_110_zzzzzzz : ALUop = 3'b010; 
+			13'b001_111_zzzzzzz, 13'b011_111_zzzzzzz : ALUop = 3'b110; 
+			13'b011_000_0000001 : ALUop = 3'b111; // multiplication
+			default : ALUop = 000; 
 		endcase 
-	
 	end 
-	assign ALUop = begin case 
+
 endmodule

@@ -19,6 +19,7 @@ module fetchExecute(clk,
 	in_alu_src,
 	in_funct3,
 	in_itype,
+	in_ALUop, 
 	in_funct7,
 	in_PC,
 	in_nextPC, 
@@ -26,7 +27,7 @@ module fetchExecute(clk,
 	in_forwardD, 
 	in_write_data, 
 	in_bubble, 
-	out_itype, 
+	out_ALUop, 
 	out_read_data1,
 	out_funct3,
 	out_funct7,
@@ -65,6 +66,7 @@ module fetchExecute(clk,
 	 input wire [31:0] in_PC;
     input wire [31:0] in_nextPC;
 	 input wire in_bubble; 
+	 input wire [2:0] in_ALUop; 
 	 
 	 // forwarding logic 
 	 input wire in_forwardC;
@@ -87,7 +89,7 @@ module fetchExecute(clk,
     output reg out_branch;
     output reg out_jal;
     output reg out_jalr;
-    output reg [2:0] out_itype;
+    output reg [2:0] out_ALUop;
     output reg [2:0] out_funct3;
     output reg [6:0] out_funct7;
 	 output reg [31:0] out_PC;
@@ -113,7 +115,7 @@ module fetchExecute(clk,
          out_branch <= in_branch;
          out_jal <= in_jal;
          out_jalr <= in_jalr;
-         out_itype <= in_itype;
+         out_ALUop <= in_ALUop;
          out_funct3 <= in_funct3;
          out_funct7 <= in_funct7;
          out_nextPC <= in_nextPC;
