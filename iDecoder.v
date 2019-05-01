@@ -17,7 +17,8 @@ module iDecoder(instruction,
 	itype,
 	jal,
 	jalr,
-	forward, 
+	forward,
+	ALUop,
 	hlt); 
 	
 	// =========== I/O ============
@@ -36,6 +37,7 @@ module iDecoder(instruction,
 	output wire mem_write; // write to memory? 
 	output wire alu_src; // second ALU input (read_reg2) or immediate value? 
 	output wire branch; // whether or not we are executing a branch instruction 
+	output wire [2:0] ALUop;
 	
 	// Let the ALU decide what to do based on I-type and funct fields 
 	output wire [6:0] funct7; 
@@ -91,4 +93,14 @@ module iDecoder(instruction,
 	assign reg_write = (~bubble)&(((~|itype)|itype[0])|opcode[2]); // 000, 001, or 011 or a Ujump 
 	// assign mult =(~bubble)&(((&itype[1:0])&(~|funct3[2:0]))&((~|funct7[6:1])&funct7[0])); 
 	
+	always @* begin 
+		casez ({itype,funct3,funct7})
+			010_000_z0zzzzz, 000_000_z0zzzzz : ALUop = 000; 
+				
+		
+		
+		endcase 
+	
+	end 
+	assign ALUop = begin case 
 endmodule
